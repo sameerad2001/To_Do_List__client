@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# To-Do-List (Client)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Please find the server application here [Server](https://github.com/sameerad2001/To_Do_List__server)
 
-## Available Scripts
 
-In the project directory, you can run:
+## How does the application work
 
-### `npm start`
+- The backend API handles requests to the following routes
+```
+Fetch all the lists (GET) : localhost:5000/lists
+Create a new list (POST) : localhost:5000/lists
+Delete a list (DELETE) : localhost:5000/lists/listNumber/ <list number>
+Modify a list (PATCH) : localhost:5000/lists/listNumber/ <list number>
+```
+- The front-end component fetches the required data using `Axios`
+```js
+let baseURL = "http://localhost:5000/lists";
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+axios.get(baseURL)
+    .then((res) => {
+        setLists(res.data.reverse())
+        setNumberOfLists(res.data[0] ? res.data[0].listNumber : 0)
+    })
+    .catch((err) => { throw err })
+```
+- This data is then mapped to cards and these cards are displayed inside a `Masonry` component ([react-masonry-css](https://www.npmjs.com/package/react-masonry-css))
+```js
+<Masonry
+    breakpointCols={breakpoints}
+    className="my-masonry-grid"
+    columnClassName="my-masonry-grid_column"
+>
+    {lists.map(createListCard)}
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</Masonry>
+```
+## What can this application do?
 
-### `npm test`
+#### **Display** the to lists
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src = "https://github.com/sameerad2001/To_Do_List__client/blob/master/public/img/Demo1.jpg" alt = "Website Demo"/>
 
-### `npm run build`
+#### **Add** a new to-do list
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src = "https://github.com/sameerad2001/To_Do_List__client/blob/master/public/img/Demo3.jpg" alt = "Website Demo"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### **Edit** and **delete** a previously made to-do list
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src = "https://github.com/sameerad2001/To_Do_List__client/blob/master/public/img/Demo4.jpg" alt = "Website Demo"/>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### A typical card has the following format
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src = "https://github.com/sameerad2001/To_Do_List__client/blob/master/public/img/Demo2.jpg" alt = "Website Demo"/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<hr>
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Sameer Ahmed <br/>
+Email : <sameerad2001@gmail.com> <br/>
+Linkdin : <https://www.linkedin.com/in/sameer-ahmed-0b7902176/>

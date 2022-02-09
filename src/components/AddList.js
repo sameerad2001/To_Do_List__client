@@ -90,7 +90,7 @@ function AddList(props) {
             <div className="card  popup-card" >
                 <div className={"card-body"}>
 
-                    <h3> New daily list </h3>
+                    <h3> New list </h3>
 
                     <TextField
                         fullWidth
